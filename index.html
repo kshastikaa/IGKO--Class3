@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 3 GK Olympiad Practice Test Series</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Quicksand (Playful & Kid-Friendly) & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Quicksand', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif']
+          },
+          colors: {
+            sunny: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706'
+            },
+            kidBlue: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              900: '#0c4a6e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Playful floating animation */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    .animate-float {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    /* Pulse animation for CTA button */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4); transform: scale(1); }
+      50% { box-shadow: 0 20px 35px -5px rgba(245, 158, 11, 0.6); transform: scale(1.02); }
+    }
+    .animate-cta {
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+
+    /* Print-Only Styles for the Test Series Award */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printAwardArea, #printAwardArea * {
+        visibility: visible;
+      }
+      #printAwardArea {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        background: white !important;
+        box-shadow: none !important;
+        border: 4px solid #f59e0b !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-amber-50/60 via-sky-50 to-indigo-50/40 text-slate-800 min-h-screen flex flex-col font-sans selection:bg-amber-200">
+
+  <!-- Top Simple Navigation Bar -->
+  <header class="bg-white/90 backdrop-blur-md border-b border-amber-200/80 sticky top-0 z-30 shadow-sm no-print">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      
+      <!-- Brand Emblem -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center shadow-md text-white font-black text-xl">
+          🌟
+        </div>
+        <div>
+          <span class="text-xs font-black tracking-widest uppercase bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-heading">CLASS 3</span>
+          <h1 class="text-base font-extrabold text-slate-800 font-heading leading-tight">GK Olympiad Test Series</h1>
+        </div>
+      </div>
+
+      <!-- Test Navigation Telemetry (Visible in Test Mode) -->
+      <div id="testTelemetry" class="hidden flex items-center space-x-3 sm:space-x-5">
+        <div class="flex items-center bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-xl shadow-inner">
+          <i class="fa-regular fa-clock text-amber-600 mr-2 text-sm"></i>
+          <span id="navTimer" class="font-heading font-black text-sm text-amber-900 tracking-wider">00:00</span>
+        </div>
+
+        <button id="btnTogglePalette" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 text-xs font-bold transition-colors">
+          <i class="fa-solid fa-table-cells text-sky-600"></i>
+          <span class="hidden sm:inline">Questions</span>
+          <span id="navProgressBadge" class="bg-sky-600 text-white text-[11px] px-1.5 py-0.2 rounded-full font-bold">1/60</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Smooth Question Progress Indicator -->
+    <div id="progressContainer" class="w-full bg-slate-100 h-1.5 hidden">
+      <div id="topProgressBar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 w-0 transition-all duration-300"></div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- ======================================================== -->
+    <!-- SCREEN 1: EYE-CATCHING, KID-FRIENDLY WELCOME SCREEN      -->
+    <!-- ======================================================== -->
+    <div id="screenWelcome" class="w-full max-w-xl mx-auto transition-all duration-300">
+      
+      <!-- Playful Floating Header Card -->
+      <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl shadow-amber-500/10 border-2 border-amber-200 text-center relative overflow-hidden">
+        
+        <!-- Decorative Background Bubbles -->
+        <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-200/40 rounded-full blur-xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 -left-12 w-36 h-36 bg-sky-200/50 rounded-full blur-xl pointer-events-none"></div>
+
+        <!-- Custom Inline SVG GK Champion Mascot Logo -->
+        <div class="w-28 h-28 mx-auto mb-4 relative animate-float">
+          <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-md">
+            <!-- Glow background -->
+            <circle cx="60" cy="60" r="54" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+            <!-- Open Book of Knowledge -->
+            <path d="M28 78 C40 70 54 73 60 76 C66 73 80 70 92 78 L92 88 C80 80 66 83 60 86 C54 83 40 80 28 88 Z" fill="#38bdf8"/>
+            <path d="M60 76 L60 86" stroke="#0284c7" stroke-width="2"/>
+            <!-- Golden Trophy -->
+            <path d="M42 36 L78 36 L74 58 C74 65 66 70 60 70 C54 70 46 65 46 58 Z" fill="#f59e0b"/>
+            <!-- Trophy handles -->
+            <path d="M42 40 C34 40 34 52 44 54" stroke="#d97706" stroke-width="3" fill="none"/>
+            <path d="M78 40 C86 40 86 52 76 54" stroke="#d97706" stroke-width="3" fill="none"/>
+            <!-- Trophy base & stem -->
+            <rect x="56" y="70" width="8" height="6" fill="#d97706"/>
+            <rect x="50" y="76" width="20" height="4" rx="2" fill="#b45309"/>
+            <!-- Star in trophy -->
+            <path d="M60 44 L62 49 L67 49 L63 52 L64.5 57 L60 54 L55.5 57 L57 52 L53 49 L58 49 Z" fill="#ffffff"/>
+            <!-- Sparkle Stars -->
+            <circle cx="28" cy="30" r="3" fill="#fbbf24"/>
+            <circle cx="92" cy="32" r="4" fill="#f59e0b"/>
+            <circle cx="60" cy="18" r="3.5" fill="#38bdf8"/>
+          </svg>
+        </div>
+
+        <!-- Titles & Badges -->
+        <span class="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300 mb-3 font-heading">
+          ✨ Class 3 • 60 Essential Olympiad Questions
+        </span>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading tracking-tight mb-2">
+          Class 3 GK Practice Test
+        </h2>
+
+        <p class="text-xs sm:text-sm text-slate-500 font-medium max-w-md mx-auto mb-6">
+          Welcome young champion! Test your General Knowledge skills across Science, India, Earth, and Nature with 60 fun questions.
+        </p>
+
+        <!-- Clean, Simplified Input Form (Name + School Name Only) -->
+        <form id="formStudentEntry" class="space-y-4 max-w-md mx-auto text-left">
+          
+          <div>
+            <label for="inputStudentName" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+              <i class="fa-solid fa-child text-amber-500 mr-1.5"></i> Student's Full Name <span class="text-rose-500">*</span>
+            </label>
+            <input type="text" id="inputStudentName" required placeholder="Enter student name (e.g. Aarav Sharma)"
+              class="w-full px-4 py-3 rounded-2xl bg-amber-50/50 border-2 border-amber-200 focus:border-amber-500 focus:bg-white focus:outline-none transition-all text-sm font-semibold text-slate-800 placeholder-slate-400">
+          </div>
+
+          <div>
+            <label for="inputSchoolName" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+              <i class="fa-solid fa-school text-sky-500 mr-1.5"></i> School Name <span class="text-rose-500">*</span>
+            </label>
+            <input type="text" id="inputSchoolName" required placeholder="Enter school name (e.g. Delhi Public School)"
+              class="w-full px-4 py-3 rounded-2xl bg-sky-50/50 border-2 border-sky-200 focus:border-sky-500 focus:bg-white focus:outline-none transition-all text-sm font-semibold text-slate-800 placeholder-slate-400">
+          </div>
+
+          <!-- Pulsing Eye-Catching CTA Button -->
+          <div class="pt-3">
+            <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-500 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-base font-heading tracking-wide shadow-xl shadow-amber-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2 animate-cta">
+              <span>🚀 Start GK Practice Test</span>
+              <i class="fa-solid fa-arrow-right-long text-lg"></i>
+            </button>
+          </div>
+
+        </form>
+
+        <div class="mt-6 flex items-center justify-center space-x-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+          <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i> 60 MCQs</span>
+          <span><i class="fa-solid fa-medal text-amber-500 mr-1"></i> 60 Total Marks</span>
+          <span><i class="fa-solid fa-award text-sky-500 mr-1"></i> Instant Award</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SCREEN 2: 60 MCQ INTERACTIVE TEST SERIES WORKSPACE       -->
+    <!-- ======================================================== -->
+    <div id="screenTest" class="hidden w-full flex flex-col lg:flex-row gap-6">
+
+      <!-- Active Question Area -->
+      <div class="flex-1 flex flex-col">
+        
+        <!-- Question Meta Card -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span id="badgeQuestionNumber" class="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-amber-100 text-amber-900 font-heading">
+                Question 1 of 60
+              </span>
+              <span class="text-xs font-bold text-slate-400">1 Mark each</span>
+            </div>
+
+            <!-- Question Statement -->
+            <h3 id="displayQuestionText" class="text-lg sm:text-xl font-extrabold text-slate-900 font-heading leading-snug mb-6">
+              Which gas do plants release during photosynthesis?
+            </h3>
+
+            <!-- 4 Options Cards Grid -->
+            <div id="optionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-2">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <!-- Bottom Question Controls -->
+          <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+            <button id="btnPrev" type="button" class="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1.5">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span>Previous</span>
+            </button>
+
+            <button id="btnClear" type="button" class="px-3 py-2 text-xs font-bold text-slate-400 hover:text-rose-600 transition-colors">
+              <i class="fa-solid fa-eraser mr-1"></i> Clear
+            </button>
+
+            <div class="flex items-center space-x-2">
+              <button id="btnNext" type="button" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-all flex items-center space-x-2">
+                <span>Next</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+              <button id="btnSubmitTest" type="button" class="hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center space-x-1.5">
+                <i class="fa-solid fa-check-double"></i>
+                <span>Submit Test</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Collapsible / Sidebar Question Palette -->
+      <aside id="paletteDrawer" class="w-full lg:w-80 bg-white rounded-3xl p-5 shadow-sm border border-slate-200/80 flex flex-col justify-between hidden lg:flex">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+            <h4 class="font-extrabold text-sm text-slate-800 font-heading">
+              <i class="fa-solid fa-shapes text-amber-500 mr-1.5"></i> Question Palette
+            </h4>
+            <span id="paletteCountText" class="text-xs font-bold text-amber-700">0 / 60 Answered</span>
+          </div>
+
+          <!-- Question Grid (60 buttons) -->
+          <div id="paletteButtonsContainer" class="grid grid-cols-6 gap-1.5 max-h-[380px] overflow-y-auto p-1">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-100">
+          <button id="btnFinishExamNow" type="button" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs tracking-wider uppercase transition-all shadow flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+            <span>Submit Test Series</span>
+          </button>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SCREEN 3: TEST SERIES AWARD & SOLUTIONS REVIEW           -->
+    <!-- ======================================================== -->
+    <div id="screenResults" class="hidden max-w-4xl mx-auto w-full space-y-6">
+
+      <!-- =================================================== -->
+      <!-- PRINTABLE TEST SERIES AWARD CONTAINER               -->
+      <!-- =================================================== -->
+      <div id="printAwardArea" class="bg-white rounded-3xl p-6 sm:p-10 border-4 border-amber-400 shadow-xl relative overflow-hidden text-center">
+        
+        <!-- Ornate Ribbon Emblem -->
+        <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 p-1 flex items-center justify-center shadow-lg">
+          <div class="w-full h-full bg-white rounded-full flex items-center justify-center text-3xl">
+            🏆
+          </div>
+        </div>
+
+        <!-- Award Header -->
+        <div class="text-xs font-black uppercase tracking-[0.2em] text-amber-700 font-heading">Official Assessment Result</div>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading tracking-tight mt-1">
+          GK OLYMPIAD TEST SERIES AWARD
+        </h2>
+        <p class="text-xs font-bold text-amber-600 uppercase tracking-widest mt-0.5">Certificate of Achievement • Class 3</p>
+
+        <!-- Student Details -->
+        <div class="my-6 py-4 border-y-2 border-dashed border-amber-200">
+          <p class="text-xs text-slate-500 italic mb-1">This award is proudly presented to</p>
+          <h3 id="awardStudentName" class="text-2xl sm:text-3xl font-black text-slate-900 font-heading uppercase text-amber-900">
+            Aarav Sharma
+          </h3>
+          <p class="text-sm font-bold text-slate-700 mt-1">
+            Grade: <span class="text-amber-700">Class 3</span> &nbsp;|&nbsp; School: <span id="awardSchoolName" class="text-sky-700">Delhi Public School</span>
+          </p>
+        </div>
+
+        <!-- Score & Star Badge -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-lg mx-auto text-center mb-6">
+          <div class="bg-amber-50 p-2.5 rounded-2xl border border-amber-200">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Total Score</div>
+            <div id="awardScoreText" class="font-heading font-black text-2xl text-amber-700">58 / 60</div>
+          </div>
+          <div class="bg-emerald-50 p-2.5 rounded-2xl border border-emerald-200">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Accuracy</div>
+            <div id="awardAccuracyText" class="font-heading font-black text-2xl text-emerald-700">96.7%</div>
+          </div>
+          <div class="bg-sky-50 p-2.5 rounded-2xl border border-sky-200 col-span-2">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Award Classification</div>
+            <div id="awardBadgeText" class="font-heading font-black text-base text-sky-900 mt-1">🌟 Gold Star Champion</div>
+          </div>
+        </div>
+
+        <!-- Completion Date -->
+        <div class="text-[11px] text-slate-400 font-bold uppercase tracking-wider">
+          Completed on: <span id="awardDateText" class="text-slate-600">October 2026</span> • Class 3 GK Olympiad Series
+        </div>
+
+      </div>
+
+      <!-- Action Toolbar (Print Award & Retake) -->
+      <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm no-print">
+        <div class="text-xs font-bold text-slate-600">
+          <i class="fa-solid fa-award text-amber-500 mr-1.5"></i>
+          Test completed successfully! Print your award or review the answers below.
+        </div>
+        <div class="flex items-center space-x-3">
+          <button id="btnPrintAward" type="button" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-black text-xs font-heading tracking-wider uppercase transition-all shadow flex items-center space-x-2">
+            <i class="fa-solid fa-print"></i>
+            <span>Print Award</span>
+          </button>
+          <button id="btnRetakeExam" type="button" class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-xs transition-colors">
+            <i class="fa-solid fa-rotate-right mr-1"></i> Retake Test
+          </button>
+        </div>
+      </div>
+
+      <!-- Comprehensive Solutions Explorer -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 no-print">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <h3 class="text-lg font-black text-slate-900 font-heading">Solutions & Explanations Review</h3>
+            <p class="text-xs text-slate-500">Review your chosen answers alongside the official correct keys</p>
+          </div>
+
+          <!-- Filters -->
+          <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl text-xs font-bold">
+            <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-lg bg-white text-slate-900 shadow-sm">All (60)</button>
+            <button data-filter="correct" class="filter-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">Correct</button>
+            <button data-filter="incorrect" class="filter-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">Incorrect</button>
+          </div>
+        </div>
+
+        <div id="solutionsCardContainer" class="space-y-3.5">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Confirmation Modal Dialog -->
+  <div id="modalConfirmSubmit" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center">
+      <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3 text-xl">
+        <i class="fa-solid fa-flag-checkered"></i>
+      </div>
+      <h3 class="text-lg font-black text-slate-900 font-heading mb-1">Submit Your Test?</h3>
+      <p class="text-xs text-slate-500 mb-4">You can see your award and final score right after submitting!</p>
+
+      <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200 mb-5 text-xs font-medium space-y-1.5 text-left">
+        <div class="flex justify-between">
+          <span class="text-slate-600">Answered Questions:</span>
+          <span id="modalAnsweredText" class="font-bold text-emerald-600">0 of 60</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-600">Remaining Questions:</span>
+          <span id="modalRemainingText" class="font-bold text-rose-600">60</span>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2.5">
+        <button id="btnModalCancel" type="button" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 font-bold text-xs transition-colors">
+          Go Back
+        </button>
+        <button id="btnModalConfirm" type="button" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-xs shadow-md hover:from-emerald-700 transition-all">
+          Yes, Submit!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Complete 60 MCQ Question Bank Extracted from the Video */
+    const ALL_QUESTIONS = [
+      {
+        id: 1,
+        question: "Which gas do plants release during photosynthesis?",
+        options: ["Carbon dioxide", "Nitrogen", "Oxygen", "Hydrogen"],
+        correct: 2,
+        explanation: "Plants absorb carbon dioxide and water in the presence of sunlight to produce food and release Oxygen into the atmosphere."
+      },
+      {
+        id: 2,
+        question: "Which planet is known as the Blue Planet?",
+        options: ["Mars", "Earth", "Neptune", "Uranus"],
+        correct: 1,
+        explanation: "Earth is nicknamed the Blue Planet because more than 70% of its surface is covered by blue water."
+      },
+      {
+        id: 3,
+        question: "What is the boiling point of water?",
+        options: ["90°C", "95°C", "100°C", "105°C"],
+        correct: 2,
+        explanation: "At standard atmospheric sea-level pressure, pure water boils and turns to steam at 100° Celsius."
+      },
+      {
+        id: 4,
+        question: "Which force pulls objects towards the earth?",
+        options: ["Magnetic force", "Friction force", "Gravity", "Wind force"],
+        correct: 2,
+        explanation: "Gravity is the invisible natural pull that draws all objects down toward the center of the Earth."
+      },
+      {
+        id: 5,
+        question: "What is the hardest natural substance on earth?",
+        options: ["Gold", "Diamond", "Glass", "Iron"],
+        correct: 1,
+        explanation: "Diamond is the hardest known natural mineral found on planet Earth."
+      },
+      {
+        id: 6,
+        question: "Which part of the plant makes seeds?",
+        options: ["Leaf", "Stem", "Root", "Flower"],
+        correct: 3,
+        explanation: "Flowers contain the reproductive parts of plants that develop into fruits and seeds."
+      },
+      {
+        id: 7,
+        question: "How many colors are there in a rainbow?",
+        options: ["5", "6", "7", "8"],
+        correct: 2,
+        explanation: "A rainbow has 7 colors: Violet, Indigo, Blue, Green, Yellow, Orange, and Red (VIBGYOR)."
+      },
+      {
+        id: 8,
+        question: "Which is the main source of energy for the earth?",
+        options: ["Moon", "Wind", "Sun", "Water"],
+        correct: 2,
+        explanation: "The Sun is Earth's primary source of light and thermal heat energy."
+      },
+      {
+        id: 9,
+        question: "Which metal is liquid at room temperature?",
+        options: ["Gold", "Silver", "Mercury", "Iron"],
+        correct: 2,
+        explanation: "Mercury is the only metal that remains naturally liquid at regular room temperature."
+      },
+      {
+        id: 10,
+        question: "Which animal is the largest mammal in the world?",
+        options: ["Elephant", "Blue Whale", "Giraffe", "Hippo"],
+        correct: 1,
+        explanation: "The Blue Whale is the largest mammal and the largest creature to ever live on Earth."
+      },
+      {
+        id: 11,
+        question: "Which bird cannot fly but can run very fast?",
+        options: ["Penguin", "Parrot", "Ostrich", "Eagle"],
+        correct: 2,
+        explanation: "The ostrich is a huge flightless bird that can run up to 70 kilometers per hour."
+      },
+      {
+        id: 12,
+        question: "A baby frog is called:",
+        options: ["Kitten", "Tadpole", "Cub", "Lamb"],
+        correct: 1,
+        explanation: "Frogs hatch from eggs as swimming, tail-bearing larvae called tadpoles."
+      },
+      {
+        id: 13,
+        question: "Which animal is known as the Ship of the Desert?",
+        options: ["Horse", "Camel", "Donkey", "Zebra"],
+        correct: 1,
+        explanation: "Camels can walk on hot desert sand and survive days without water, making them the 'Ship of the Desert'."
+      },
+      {
+        id: 14,
+        question: "Which is the fastest land animal?",
+        options: ["Lion", "Horse", "Cheetah", "Leopard"],
+        correct: 2,
+        explanation: "The cheetah can reach speeds of over 100 km/h in short sprints."
+      },
+      {
+        id: 15,
+        question: "Silk is produced by which insect?",
+        options: ["Bee", "Ant", "Silkworm", "Moth"],
+        correct: 2,
+        explanation: "Silkworms spin shiny silk cocoons that are processed to make smooth silk fabric."
+      },
+      {
+        id: 16,
+        question: "Who was the first Prime Minister of India?",
+        options: ["Sardar Patel", "Mahatma Gandhi", "Jawaharlal Nehru", "B.R. Ambedkar"],
+        correct: 2,
+        explanation: "Pandit Jawaharlal Nehru took oath as independent India's first Prime Minister in 1947."
+      },
+      {
+        id: 17,
+        question: "Which is the largest state in India by area?",
+        options: ["Maharashtra", "Uttar Pradesh", "Madhya Pradesh", "Rajasthan"],
+        correct: 3,
+        explanation: "Rajasthan is the largest Indian state by total geographic land area."
+      },
+      {
+        id: 18,
+        question: "National currency of India is:",
+        options: ["Dollar", "Pound", "Rupee", "Euro"],
+        correct: 2,
+        explanation: "The Indian Rupee (₹) is the official legal tender and currency of India."
+      },
+      {
+        id: 19,
+        question: "Which mountain range is in Northern India?",
+        options: ["Aravalli", "Vindhya", "Himalayas", "Western Ghats"],
+        correct: 2,
+        explanation: "The great Himalayan mountain range stretches along the northern border of India."
+      },
+      {
+        id: 20,
+        question: "Who wrote the Indian National Anthem?",
+        options: ["Bankim Chandra", "Rabindranath Tagore", "Sarojini Naidu", "Premchand"],
+        correct: 1,
+        explanation: "Nobel laureate Rabindranath Tagore composed 'Jana Gana Mana'."
+      },
+      {
+        id: 21,
+        question: "Which city is known as Pink City of India?",
+        options: ["Jaipur", "Jodhpur", "Udaipur", "Agra"],
+        correct: 0,
+        explanation: "Jaipur, the capital of Rajasthan, is world-famous as the Pink City."
+      },
+      {
+        id: 22,
+        question: "Which is the smallest state in India by area?",
+        options: ["Sikkim", "Tripura", "Goa", "Meghalaya"],
+        correct: 2,
+        explanation: "Goa is the smallest state in India by geographical land area."
+      },
+      {
+        id: 23,
+        question: "Taj Mahal is located in which city?",
+        options: ["Delhi", "Agra", "Jaipur", "Lucknow"],
+        correct: 1,
+        explanation: "The historic white marble monument Taj Mahal is situated in Agra, Uttar Pradesh."
+      },
+      {
+        id: 24,
+        question: "What is the national sports of India?",
+        options: ["Cricket", "Football", "Hockey", "Kabaddi"],
+        correct: 2,
+        explanation: "Field Hockey is historically celebrated as India's national sport."
+      },
+      {
+        id: 25,
+        question: "How many states are there in India?",
+        options: ["25", "26", "28", "29"],
+        correct: 2,
+        explanation: "India currently comprises 28 States and 8 Union Territories."
+      },
+      {
+        id: 26,
+        question: "Which is the largest country in the world by area?",
+        options: ["USA", "China", "Canada", "Russia"],
+        correct: 3,
+        explanation: "Russia is the largest country in the world by total surface area."
+      },
+      {
+        id: 27,
+        question: "The Great Wall is located in which country?",
+        options: ["Japan", "India", "China", "Egypt"],
+        correct: 2,
+        explanation: "The ancient Great Wall was constructed across the historical northern borders of China."
+      },
+      {
+        id: 28,
+        question: "Which country is known as the Land of Kangaroos?",
+        options: ["New Zealand", "South Africa", "Brazil", "Australia"],
+        correct: 3,
+        explanation: "Australia is home to native marsupials like kangaroos and koalas."
+      },
+      {
+        id: 29,
+        question: "Which is the hottest desert in the world?",
+        options: ["Gobi", "Thar", "Sahara", "Atacama"],
+        correct: 2,
+        explanation: "The Sahara Desert in northern Africa is the hottest and largest subtropical desert on Earth."
+      },
+      {
+        id: 30,
+        question: "Which country gifted the Statue of Liberty to USA?",
+        options: ["England", "Germany", "France", "Italy"],
+        correct: 2,
+        explanation: "France gifted the colossal Statue of Liberty to the United States as a token of friendship in 1886."
+      },
+      {
+        id: 31,
+        question: "Which planet has a ring around it?",
+        options: ["Mars", "Jupiter", "Saturn", "Neptune"],
+        correct: 2,
+        explanation: "Saturn is known for its wide and spectacular icy ring system."
+      },
+      {
+        id: 32,
+        question: "How many days does Earth take to go around the Sun?",
+        options: ["30", "183", "365", "400"],
+        correct: 2,
+        explanation: "Earth takes approximately 365 days (one standard year) to complete its orbit around the Sun."
+      },
+      {
+        id: 33,
+        question: "What is the name of Earth's natural satellite?",
+        options: ["Sun", "Mars", "Moon", "Pluto"],
+        correct: 2,
+        explanation: "The Moon is the single natural satellite orbiting the Earth."
+      },
+      {
+        id: 34,
+        question: "Which is the hottest planet in our solar system?",
+        options: ["Mercury", "Venus", "Mars", "Jupiter"],
+        correct: 1,
+        explanation: "Venus is the hottest planet due to a dense atmosphere that traps heat like a greenhouse."
+      },
+      {
+        id: 35,
+        question: "What is a group of stars forming a pattern called?",
+        options: ["Galaxy", "Constellation", "Meteor", "Comet"],
+        correct: 1,
+        explanation: "A recognizable pattern formed by stars in the night sky is called a Constellation."
+      },
+      {
+        id: 36,
+        question: "Which is the largest organ in human body?",
+        options: ["Liver", "Lungs", "Skin", "Heart"],
+        correct: 2,
+        explanation: "The skin is the largest organ of the human body, protecting us from germs and temperature changes."
+      },
+      {
+        id: 37,
+        question: "Which vitamin helps our bones become strong?",
+        options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+        correct: 3,
+        explanation: "Vitamin D helps our bones absorb calcium to grow strong and healthy."
+      },
+      {
+        id: 38,
+        question: "How many chambers does the human heart have?",
+        options: ["2", "3", "4", "5"],
+        correct: 2,
+        explanation: "The human heart has 4 chambers: two upper atria and two lower ventricles."
+      },
+      {
+        id: 39,
+        question: "Which organ in our body filters blood?",
+        options: ["Liver", "Kidney", "Lungs", "Heart"],
+        correct: 1,
+        explanation: "Kidneys filter unwanted waste and water from the blood to keep our body clean."
+      },
+      {
+        id: 40,
+        question: "Which part of our body controls all our actions?",
+        options: ["Heart", "Lungs", "Brain", "Kidney"],
+        correct: 2,
+        explanation: "The brain controls our thinking, movements, memory, and all bodily functions."
+      },
+      {
+        id: 41,
+        question: "Who built the Taj Mahal?",
+        options: ["Akbar", "Shah Jahan", "Aurangzeb", "Humayun"],
+        correct: 1,
+        explanation: "Mughal Emperor Shah Jahan commissioned the construction of the Taj Mahal in Agra."
+      },
+      {
+        id: 42,
+        question: "In which year did India get independence?",
+        options: ["1942", "1945", "1947", "1950"],
+        correct: 2,
+        explanation: "India achieved independence from British rule on 15th August 1947."
+      },
+      {
+        id: 43,
+        question: "Who is known as the Iron Man of India?",
+        options: ["Nehru", "Gandhi", "Sardar Patel", "Bose"],
+        correct: 2,
+        explanation: "Sardar Vallabhbhai Patel is commemorated as the 'Iron Man of India' for integrating the country."
+      },
+      {
+        id: 44,
+        question: "Where did Mahatma Gandhi do the Salt March?",
+        options: ["Mumbai", "Dandi", "Amritsar", "Kolkata"],
+        correct: 1,
+        explanation: "Mahatma Gandhi led the historic Salt March to the coastal village of Dandi in Gujarat."
+      },
+      {
+        id: 45,
+        question: "Which monument is in Delhi?",
+        options: ["Charminar", "Gateway of India", "Qutub Minar", "Hawa Mahal"],
+        correct: 2,
+        explanation: "Qutub Minar is located in New Delhi. (Charminar is in Hyderabad, Gateway in Mumbai, Hawa Mahal in Jaipur)."
+      },
+      {
+        id: 46,
+        question: "Which food is a rich source of iron?",
+        options: ["Milk", "Spinach", "Rice", "Sugar"],
+        correct: 1,
+        explanation: "Green leafy vegetables like spinach provide essential iron for healthy blood."
+      },
+      {
+        id: 47,
+        question: "Which fruit is known as the King of Fruits?",
+        options: ["Apple", "Banana", "Mango", "Guava"],
+        correct: 2,
+        explanation: "The juicy, sweet mango is hailed as the 'King of Fruits'."
+      },
+      {
+        id: 48,
+        question: "Which nutrient helps our body grow and repair?",
+        options: ["Fat", "Carbohydrates", "Protein", "Vitamins"],
+        correct: 2,
+        explanation: "Proteins are the body's building blocks that build and repair muscles and cells."
+      },
+      {
+        id: 49,
+        question: "Iodine deficiency causes which disease?",
+        options: ["Diabetes", "Goitre", "Malaria", "Anemia"],
+        correct: 1,
+        explanation: "Lack of iodine in one's diet can lead to enlargement of the thyroid gland, known as Goitre."
+      },
+      {
+        id: 50,
+        question: "Vitamin C is found in which fruit?",
+        options: ["Banana", "Mango", "Orange", "Apple"],
+        correct: 2,
+        explanation: "Citrus fruits such as oranges and lemons are rich in Vitamin C, boosting immunity."
+      },
+      {
+        id: 51,
+        question: "Who invented the aeroplane?",
+        options: ["Edison", "Bell", "Wright Brothers", "Newton"],
+        correct: 2,
+        explanation: "Orville and Wilbur Wright (The Wright Brothers) designed and flew the first powered airplane in 1903."
+      },
+      {
+        id: 52,
+        question: "Who made major inventions in electricity and light bulb?",
+        options: ["Newton", "Edison", "Einstein", "Bell"],
+        correct: 1,
+        explanation: "Thomas Alva Edison patented the first commercially practical incandescent light bulb."
+      },
+      {
+        id: 53,
+        question: "Which is the fastest train in the world?",
+        options: ["Rajdhani", "Bullet Train", "Express Train", "Metro"],
+        correct: 1,
+        explanation: "High-speed Bullet Trains (such as Japanese Shinkansen and Maglevs) run at ultra-fast speeds."
+      },
+      {
+        id: 54,
+        question: "Who invented the computer?",
+        options: ["Bill Gates", "Alan Turing", "Charles Babbage", "Steve Jobs"],
+        correct: 2,
+        explanation: "Charles Babbage is universally honored as the 'Father of the Computer'."
+      },
+      {
+        id: 55,
+        question: "Which fuel is used in aeroplanes?",
+        options: ["Petrol", "Diesel", "CNG", "Aviation Fuel"],
+        correct: 3,
+        explanation: "Airplanes use specially formulated Aviation Fuel (Aviation Turbine Fuel / ATF)."
+      },
+      {
+        id: 56,
+        question: "How many seconds are in 1 minute?",
+        options: ["30", "45", "60", "100"],
+        correct: 2,
+        explanation: "There are exactly 60 seconds in one minute."
+      },
+      {
+        id: 57,
+        question: "How many sides does a pentagon have?",
+        options: ["4", "5", "6", "7"],
+        correct: 1,
+        explanation: "A polygon with 5 sides and 5 corners is called a Pentagon."
+      },
+      {
+        id: 58,
+        question: "What comes after a million?",
+        options: ["Billion", "Trillion", "Thousand", "Lakh"],
+        correct: 0,
+        explanation: "In the international numbering system, 1,000 millions make 1 Billion."
+      },
+      {
+        id: 59,
+        question: "How many zeros are in 1 lakh?",
+        options: ["3", "4", "5", "6"],
+        correct: 2,
+        explanation: "One Lakh is written as 1,00,000 which has 5 zeros."
+      },
+      {
+        id: 60,
+        question: "Which is the largest single digit number?",
+        options: ["8", "9", "10", "7"],
+        correct: 1,
+        explanation: "The single digit whole numbers are 0 through 9, making 9 the greatest single-digit number."
+      }
+    ];
+
+    /* App Reactive State */
+    const testState = {
+      studentName: '',
+      schoolName: '',
+      currentIndex: 0,
+      userAnswers: {},  // { [questionIdx]: selectedOptionIdx }
+      timerSeconds: 0,
+      timerTimer: null
+    };
+
+    // DOM Elements
+    const screenWelcome = document.getElementById('screenWelcome');
+    const screenTest = document.getElementById('screenTest');
+    const screenResults = document.getElementById('screenResults');
+    const testTelemetry = document.getElementById('testTelemetry');
+    const progressContainer = document.getElementById('progressContainer');
+    const topProgressBar = document.getElementById('topProgressBar');
+    const navTimer = document.getElementById('navTimer');
+    const navProgressBadge = document.getElementById('navProgressBadge');
+
+    const formStudentEntry = document.getElementById('formStudentEntry');
+    const inputStudentName = document.getElementById('inputStudentName');
+    const inputSchoolName = document.getElementById('inputSchoolName');
+
+    const badgeQuestionNumber = document.getElementById('badgeQuestionNumber');
+    const displayQuestionText = document.getElementById('displayQuestionText');
+    const optionsGrid = document.getElementById('optionsGrid');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnClear = document.getElementById('btnClear');
+    const btnSubmitTest = document.getElementById('btnSubmitTest');
+    const btnFinishExamNow = document.getElementById('btnFinishExamNow');
+
+    const paletteDrawer = document.getElementById('paletteDrawer');
+    const btnTogglePalette = document.getElementById('btnTogglePalette');
+    const paletteButtonsContainer = document.getElementById('paletteButtonsContainer');
+    const paletteCountText = document.getElementById('paletteCountText');
+
+    const modalConfirmSubmit = document.getElementById('modalConfirmSubmit');
+    const modalAnsweredText = document.getElementById('modalAnsweredText');
+    const modalRemainingText = document.getElementById('modalRemainingText');
+    const btnModalCancel = document.getElementById('btnModalCancel');
+    const btnModalConfirm = document.getElementById('btnModalConfirm');
+
+    const awardStudentName = document.getElementById('awardStudentName');
+    const awardSchoolName = document.getElementById('awardSchoolName');
+    const awardScoreText = document.getElementById('awardScoreText');
+    const awardAccuracyText = document.getElementById('awardAccuracyText');
+    const awardBadgeText = document.getElementById('awardBadgeText');
+    const awardDateText = document.getElementById('awardDateText');
+    const btnPrintAward = document.getElementById('btnPrintAward');
+    const btnRetakeExam = document.getElementById('btnRetakeExam');
+    const solutionsCardContainer = document.getElementById('solutionsCardContainer');
+
+    // Form Submission: Start Test
+    formStudentEntry.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const sName = inputStudentName.value.trim();
+      const schName = inputSchoolName.value.trim();
+
+      if (!sName || !schName) return;
+
+      testState.studentName = sName;
+      testState.schoolName = schName;
+
+      // Switch screens
+      screenWelcome.classList.add('hidden');
+      screenTest.classList.remove('hidden');
+      testTelemetry.classList.remove('hidden');
+      progressContainer.classList.remove('hidden');
+
+      // Start timer & render
+      startElapsedTimer();
+      buildPalette();
+      renderActiveQuestion(0);
+    });
+
+    function startElapsedTimer() {
+      testState.timerSeconds = 0;
+      clearInterval(testState.timerTimer);
+      testState.timerTimer = setInterval(() => {
+        testState.timerSeconds++;
+        const mins = Math.floor(testState.timerSeconds / 60);
+        const secs = testState.timerSeconds % 60;
+        navTimer.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    function renderActiveQuestion(index) {
+      if (index < 0 || index >= ALL_QUESTIONS.length) return;
+      testState.currentIndex = index;
+      const q = ALL_QUESTIONS[index];
+
+      // Update Top Nav Tracker
+      navProgressBadge.textContent = `${index + 1}/60`;
+      badgeQuestionNumber.textContent = `Question ${index + 1} of 60`;
+      displayQuestionText.textContent = q.question;
+
+      // Update Smooth Progress Bar
+      const pct = ((index + 1) / ALL_QUESTIONS.length) * 100;
+      topProgressBar.style.width = `${pct}%`;
+
+      // Render Options
+      optionsGrid.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+      const userChoice = testState.userAnswers[index];
+
+      q.options.forEach((optText, optIdx) => {
+        const isSelected = userChoice === optIdx;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center space-x-3.5 group ${
+          isSelected 
+            ? 'border-amber-500 bg-amber-50 shadow-md ring-2 ring-amber-400/40' 
+            : 'border-slate-200 hover:border-amber-300 bg-white hover:bg-slate-50'
+        }`;
+
+        btn.innerHTML = `
+          <div class="w-8 h-8 rounded-xl flex items-center justify-center font-heading font-black text-xs transition-colors ${
+            isSelected 
+              ? 'bg-amber-500 text-slate-950 shadow-sm' 
+              : 'bg-slate-100 text-slate-600 group-hover:bg-amber-100 group-hover:text-amber-900'
+          }">
+            ${letters[optIdx]}
+          </div>
+          <span class="text-sm font-bold text-slate-800 leading-snug">${optText}</span>
+        `;
+
+        btn.addEventListener('click', () => {
+          testState.userAnswers[index] = optIdx;
+          renderActiveQuestion(index);
+          updatePaletteHighlights();
+
+          // Smooth gentle auto-advance if not on last question
+          if (index < ALL_QUESTIONS.length - 1) {
+            setTimeout(() => {
+              if (testState.currentIndex === index) {
+                renderActiveQuestion(index + 1);
+              }
+            }, 350);
+          }
+        });
+
+        optionsGrid.appendChild(btn);
+      });
+
+      // Update Previous/Next Buttons
+      btnPrev.disabled = index === 0;
+      if (index === ALL_QUESTIONS.length - 1) {
+        btnNext.classList.add('hidden');
+        btnSubmitTest.classList.remove('hidden');
+      } else {
+        btnNext.classList.remove('hidden');
+        btnSubmitTest.classList.add('hidden');
+      }
+
+      updatePaletteHighlights();
+    }
+
+    function buildPalette() {
+      paletteButtonsContainer.innerHTML = '';
+      ALL_QUESTIONS.forEach((_, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = `palette-btn-${idx}`;
+        btn.className = 'w-full aspect-square rounded-xl text-xs font-heading font-bold border transition-all flex items-center justify-center bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200';
+        btn.textContent = idx + 1;
+
+        btn.addEventListener('click', () => {
+          renderActiveQuestion(idx);
+          if (window.innerWidth < 1024) {
+            paletteDrawer.classList.add('hidden');
+          }
+        });
+
+        paletteButtonsContainer.appendChild(btn);
+      });
+      updatePaletteHighlights();
+    }
+
+    function updatePaletteHighlights() {
+      const answeredCount = Object.keys(testState.userAnswers).length;
+      paletteCountText.textContent = `${answeredCount} / 60 Answered`;
+
+      ALL_QUESTIONS.forEach((_, idx) => {
+        const btn = document.getElementById(`palette-btn-${idx}`);
+        if (!btn) return;
+        const isAnswered = testState.userAnswers.hasOwnProperty(idx);
+        const isCurrent = testState.currentIndex === idx;
+
+        btn.className = `w-full aspect-square rounded-xl text-xs font-heading font-bold border transition-all flex items-center justify-center ${
+          isAnswered 
+            ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm' 
+            : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border-slate-200'
+        } ${isCurrent ? 'ring-2 ring-slate-900 ring-offset-1 font-black scale-105' : ''}`;
+      });
+    }
+
+    // Toggle Palette on mobile/tablet
+    btnTogglePalette.addEventListener('click', () => {
+      paletteDrawer.classList.toggle('hidden');
+    });
+
+    // Clear Selection
+    btnClear.addEventListener('click', () => {
+      delete testState.userAnswers[testState.currentIndex];
+      renderActiveQuestion(testState.currentIndex);
+    });
+
+    // Previous / Next Buttons
+    btnPrev.addEventListener('click', () => {
+      if (testState.currentIndex > 0) {
+        renderActiveQuestion(testState.currentIndex - 1);
+      }
+    });
+
+    btnNext.addEventListener('click', () => {
+      if (testState.currentIndex < ALL_QUESTIONS.length - 1) {
+        renderActiveQuestion(testState.currentIndex + 1);
+      }
+    });
+
+    // Submit Confirmation Dialog
+    function promptSubmitConfirmation() {
+      const answered = Object.keys(testState.userAnswers).length;
+      const remaining = ALL_QUESTIONS.length - answered;
+      modalAnsweredText.textContent = `${answered} of 60`;
+      modalRemainingText.textContent = remaining;
+      modalConfirmSubmit.classList.remove('hidden');
+    }
+
+    btnSubmitTest.addEventListener('click', promptSubmitConfirmation);
+    btnFinishExamNow.addEventListener('click', promptSubmitConfirmation);
+
+    btnModalCancel.addEventListener('click', () => {
+      modalConfirmSubmit.classList.add('hidden');
+    });
+
+    btnModalConfirm.addEventListener('click', () => {
+      modalConfirmSubmit.classList.add('hidden');
+      finishTestAndShowAward();
+    });
+
+    function finishTestAndShowAward() {
+      clearInterval(testState.timerTimer);
+
+      let score = 0;
+      ALL_QUESTIONS.forEach((q, idx) => {
+        if (testState.userAnswers[idx] === q.correct) {
+          score++;
+        }
+      });
+
+      const pct = ((score / 60) * 100).toFixed(1);
+
+      // Determine Award Title & Stars
+      let badge = "🌟 Rising Star (Good Effort)";
+      if (score >= 54) {
+        badge = "🌟 Gold Star Champion";
+      } else if (score >= 45) {
+        badge = "🎖️ Silver Star Performer";
+      } else if (score >= 33) {
+        badge = "🥉 Bronze Star Achiever";
+      }
+
+      // Populate Award Details
+      awardStudentName.textContent = testState.studentName;
+      awardSchoolName.textContent = testState.schoolName;
+      awardScoreText.textContent = `${score} / 60`;
+      awardAccuracyText.textContent = `${pct}%`;
+      awardBadgeText.textContent = badge;
+      awardDateText.textContent = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      // Switch to Results
+      screenTest.classList.add('hidden');
+      testTelemetry.classList.add('hidden');
+      progressContainer.classList.add('hidden');
+      screenResults.classList.remove('hidden');
+
+      // Playful Confetti Burst
+      try {
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 120,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+        }
+      } catch (err) {
+        console.warn("Confetti skipped:", err);
+      }
+
+      renderSolutionsList('all');
+    }
+
+    function renderSolutionsList(filter = 'all') {
+      solutionsCardContainer.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      ALL_QUESTIONS.forEach((q, idx) => {
+        const userChoice = testState.userAnswers[idx];
+        const isAttempted = userChoice !== undefined;
+        const isCorrect = isAttempted && userChoice === q.correct;
+
+        if (filter === 'correct' && !isCorrect) return;
+        if (filter === 'incorrect' && (isCorrect || !isAttempted)) return;
+
+        const card = document.createElement('div');
+        card.className = `p-4 sm:p-5 rounded-2xl border transition-all ${
+          !isAttempted 
+            ? 'border-slate-200 bg-slate-50' 
+            : isCorrect 
+              ? 'border-emerald-200 bg-emerald-50/40' 
+              : 'border-rose-200 bg-rose-50/40'
+        }`;
+
+        let statusPill = '';
+        if (!isAttempted) {
+          statusPill = '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-700">Not Attempted</span>';
+        } else if (isCorrect) {
+          statusPill = '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800"><i class="fa-solid fa-check mr-1"></i>Correct (+1 Mark)</span>';
+        } else {
+          statusPill = '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800"><i class="fa-solid fa-xmark mr-1"></i>Incorrect</span>';
+        }
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider font-heading">Question ${idx + 1} of 60</span>
+            ${statusPill}
+          </div>
+          <h4 class="text-sm sm:text-base font-extrabold text-slate-900 font-heading mb-3">${q.question}</h4>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs mb-3">
+            <div class="p-2.5 rounded-xl border ${
+              isAttempted && !isCorrect 
+                ? 'border-rose-300 bg-rose-50 text-rose-900 font-bold' 
+                : 'border-slate-200 bg-white text-slate-700 font-medium'
+            }">
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Your Answer:</span>
+              ${isAttempted ? `${letters[userChoice]}. ${q.options[userChoice]}` : '<span class="italic text-slate-400">Skipped</span>'}
+            </div>
+            <div class="p-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-950 font-bold">
+              <span class="text-[10px] uppercase font-bold text-emerald-600 block">Correct Answer:</span>
+              ${letters[q.correct]}. ${q.options[q.correct]}
+            </div>
+          </div>
+
+          <div class="bg-amber-50/70 rounded-xl p-3 border border-amber-200/70 text-xs text-amber-950">
+            <span class="font-bold text-amber-900 block mb-0.5">
+              <i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> Explanation:
+            </span>
+            <span class="text-slate-600">${q.explanation}</span>
+          </div>
+        `;
+
+        solutionsCardContainer.appendChild(card);
+      });
+
+      if (solutionsCardContainer.children.length === 0) {
+        solutionsCardContainer.innerHTML = `
+          <div class="text-center py-6 text-slate-400 text-xs">
+            <p>No questions found in this category.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Solutions Filter Tabs Click
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+          b.classList.add('text-slate-600');
+        });
+        btn.classList.add('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+        btn.classList.remove('text-slate-600');
+        renderSolutionsList(btn.dataset.filter);
+      });
+    });
+
+    // Native Browser Print Award
+    btnPrintAward.addEventListener('click', () => {
+      window.print();
+    });
+
+    // Retake Exam Action
+    btnRetakeExam.addEventListener('click', () => {
+      testState.currentIndex = 0;
+      testState.userAnswers = {};
+      testState.timerSeconds = 0;
+
+      screenResults.classList.add('hidden');
+      screenWelcome.classList.remove('hidden');
+    });
+
+    // Keyboard navigation (1-4 and left/right arrows)
+    window.addEventListener('keydown', (e) => {
+      if (screenTest.classList.contains('hidden')) return;
+
+      const key = e.key;
+      if (['1', 'a', 'A'].includes(key)) {
+        testState.userAnswers[testState.currentIndex] = 0;
+        renderActiveQuestion(testState.currentIndex);
+      } else if (['2', 'b', 'B'].includes(key)) {
+        testState.userAnswers[testState.currentIndex] = 1;
+        renderActiveQuestion(testState.currentIndex);
+      } else if (['3', 'c', 'C'].includes(key)) {
+        testState.userAnswers[testState.currentIndex] = 2;
+        renderActiveQuestion(testState.currentIndex);
+      } else if (['4', 'd', 'D'].includes(key)) {
+        testState.userAnswers[testState.currentIndex] = 3;
+        renderActiveQuestion(testState.currentIndex);
+      } else if (e.key === 'ArrowRight' && testState.currentIndex < ALL_QUESTIONS.length - 1) {
+        renderActiveQuestion(testState.currentIndex + 1);
+      } else if (e.key === 'ArrowLeft' && testState.currentIndex > 0) {
+        renderActiveQuestion(testState.currentIndex - 1);
+      }
+    });
+  </script>
+</body>
+</html>
